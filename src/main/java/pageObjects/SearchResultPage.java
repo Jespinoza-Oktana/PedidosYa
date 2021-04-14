@@ -52,11 +52,6 @@ public class SearchResultPage {
         System.out.printf("\n");
         System.out.printf("%-50s %s\n", "Restaurant", "Star rating");
 
-       // for(WebElement pizza :pizzaStores){
-         //   System.out.printf("%-50s %s\n", pizza.getText(), rating.get(0).getText());
-
-        //}
-
         for (Integer i = 0; i < pizzaStores.size(); i++) {
            System.out.printf("%-50s %s\n", pizzaStores.get(i).getText(), listRating.get(i).getText());
        }
