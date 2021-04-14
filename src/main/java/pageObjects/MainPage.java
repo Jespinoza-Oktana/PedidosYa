@@ -17,19 +17,19 @@ public class MainPage{
     WebElement droplist;
 
     @FindBy(xpath = "//li[contains(text(), 'Montevideo')]")
-    WebElement pick_montevideo;
+    WebElement pickMontevideo;
 
     @FindBy(css = "input[name='address']")
     WebElement adress;
 
     @FindBy(css = "input[name='optional']")
-    WebElement optinal_filter;
+    WebElement optinalFilter;
 
     @FindBy(id = "search")
-    WebElement search_button;
+    WebElement searchButton;
 
     @FindBy(id = "confirm")
-    WebElement accept_button;
+    WebElement acceptButton;
 
     @FindBy(className = "mapNotification")
     WebElement waitNotification;
@@ -42,20 +42,15 @@ public class MainPage{
     }
 
     @Parameters({"Address"})
-    public void search_items(String Address) {
+    public void searchItems(String Address) {
         droplist.click();
-        pick_montevideo.click();
+        pickMontevideo.click();
         adress.sendKeys(Address);
-        optinal_filter.sendKeys("Pizzas");
-        search_button.click();
+        optinalFilter.sendKeys("Pizzas");
+        searchButton.click();
         WebDriverWait wait = new WebDriverWait(driver,5);
         wait.until(ExpectedConditions.visibilityOf(waitNotification));
-        accept_button.click();
-    }
-
-
-    public WebElement getDroplist() {
-        return droplist;
+        acceptButton.click();
     }
 
     public String getUrl() {

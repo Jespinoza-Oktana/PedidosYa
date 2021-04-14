@@ -9,58 +9,64 @@ import org.testng.annotations.Parameters;
 
 import java.util.List;
 
-public class SearchResult {
+public class SearchResultPage {
     private final WebDriver driver;
 
     @FindBy(className = "found")
-    WebElement total_results;
+    WebElement totalResults;
 
     @FindBy(className = "arrivalName")
     List<WebElement> pizzaStores;
 
     @FindBy(xpath = "//span[contains(text(), 'Descubrir')]")
-    WebElement filter_descubir;
+    WebElement filterFind;
 
     @FindBy(xpath = "//a[contains(@data-dropdown, 'drop1')]")
     WebElement sort_droplist;
 
     @FindBy(linkText = "Alfabéticamente")
-    WebElement sort_alfabeticamente;
+    WebElement alphabeticalSort;
 
     @FindBy(xpath = "//a[contains(text(), 'Bar Castrobó')]")
-    List<WebElement> first_restaurant;
+    List<WebElement> firstRestaurant;
 
     @FindBy(xpath = "//i[contains(@class, 'rating-points')]")
     List<WebElement> rating;
 
-    public SearchResult(WebDriver driver){
+    public SearchResultPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
     @Parameters({"Address"})
-    public void Show_results(String Address){
+    public void showResults(String Address){
         System.out.println("The Page with no filter selected");
-        this.obtain_Total_Search_results(Address);
-        this.printResults(pizzaStores.size());
-        filter_descubir.click();
+        obtainTotalSearchresults(Address);
+        printResults(pizzaStores.size());
+        filterFind.click();
         sort_droplist.click();
-        sort_alfabeticamente.click();
+        alphabeticalSort.click();
         System.out.println("\nThe Page with 1 filter selected");
-        this.obtain_Total_Search_results(Address);
-        this.printResults(pizzaStores.size());
+        obtainTotalSearchresults(Address);
+        printResults(pizzaStores.size());
         System.out.printf("\n");
         System.out.printf("%-50s %s\n", "Restaurant", "Star rating");
-        for (Integer i = 0; i < pizzaStores.size(); i++) {
-            System.out.printf("%-50s %s\n", pizzaStores.get(i).getText(), rating.get(i).getText());
-        }
 
-        first_restaurant.get(0).click();
+       // for(WebElement pizza :pizzaStores){
+         //   System.out.printf("%-50s %s\n", pizza.getText(), rating.get(0).getText());
+
+        //}
+
+        for (Integer i = 0; i < pizzaStores.size(); i++) {
+           System.out.printf("%-50s %s\n", pizzaStores.get(i).getText(), rating.get(i).getText());
+       }
+
+        firstRestaurant.get(0).click();
     }
 
-    private void obtain_Total_Search_results(String Address) {
+    private void obtainTotalSearchresults(String Address) {
         int number_size= Address.length()+14;
-        String total_number= total_results.getText();
+        String total_number= totalResults.getText();
         String total_rest =total_number.substring(0,total_number.length()-number_size);
         System.out.println("The total number of results are : " + total_rest);
         Allure.addAttachment("The total number of results:", total_rest);

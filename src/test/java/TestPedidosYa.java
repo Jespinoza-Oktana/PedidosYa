@@ -3,35 +3,35 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.FirstRestaurant;
+import pageObjects.FirstRestaurantPage;
 import pageObjects.MainPage;
-import pageObjects.SearchResult;
+import pageObjects.SearchResultPage;
 
 public class TestPedidosYa extends Base{
         private MainPage mainPage;
-        private SearchResult searchResult;
-        private FirstRestaurant firstRestaurant;
+        private SearchResultPage searchResultPage;
+        private FirstRestaurantPage firstRestaurantPage;
 
         @BeforeTest
         public void initialize(){
             driver=initializeDriver();
-            driver.get("https://www.pedidosya.com.uy/");
             mainPage = new MainPage(driver);
-            searchResult = new SearchResult(driver);
-            firstRestaurant = new FirstRestaurant(driver);
+            searchResultPage = new SearchResultPage(driver);
+            firstRestaurantPage = new FirstRestaurantPage(driver);
+            driver.get(mainPage.getUrl());
         }
 
         @Test
         @Description("Explore the pedidoya page")
         @Parameters({"Address"})
-        public void A_PedidosYA_page_appears(String Address) {
-            mainPage.search_items(Address);
-            searchResult.Show_results(Address);
-            firstRestaurant.obtainRestaurantInfo();
+        public void pedidosYaPagetest(String Address) {
+            mainPage.searchItems(Address);
+            searchResultPage.showResults(Address);
+            firstRestaurantPage.obtainRestaurantInfo();
         }
 
         @AfterTest
         public void closeDriver(){
-            driver.close();
+            driver.quit();
         }
 }
