@@ -24,7 +24,7 @@ public class TestPedidosYa extends Base{
         @Test
         @Description("Explore the pedidoya page")
         @Parameters({"Address"})
-        public void pedidosYaPagetest(String Address) {
+        public void testPedidosYa(String Address) {
             mainPage.searchItems(Address);
             searchResultPage.showResults(Address);
             firstRestaurantPage.obtainRestaurantInfo();

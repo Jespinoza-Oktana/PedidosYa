@@ -31,7 +31,7 @@ public class SearchResultPage {
     List<WebElement> firstRestaurant;
 
     @FindBy(xpath = "//i[contains(@class, 'rating-points')]")
-    List<WebElement> rating;
+    List<WebElement> listRating;
 
     public SearchResultPage(WebDriver driver){
         this.driver = driver;
@@ -58,7 +58,7 @@ public class SearchResultPage {
         //}
 
         for (Integer i = 0; i < pizzaStores.size(); i++) {
-           System.out.printf("%-50s %s\n", pizzaStores.get(i).getText(), rating.get(i).getText());
+           System.out.printf("%-50s %s\n", pizzaStores.get(i).getText(), listRating.get(i).getText());
        }
 
         firstRestaurant.get(0).click();

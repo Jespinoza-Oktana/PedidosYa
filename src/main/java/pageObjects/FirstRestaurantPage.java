@@ -12,10 +12,10 @@ public class FirstRestaurantPage {
     private final WebDriver driver;
 
     @FindBy(className = "description")
-    List<WebElement> restDescription;
+    List<WebElement> listDescription;
 
     @FindBy(xpath = "//span[contains(@class, 'new_rating')]")
-    List<WebElement> restRating;
+    List<WebElement> listRestaurantRating;
 
     @FindBy(xpath = "//h1[contains(@itemprop, 'name')]")
     WebElement restName;
@@ -32,8 +32,8 @@ public class FirstRestaurantPage {
         System.out.printf("%-30s %s\n", "Description", "rating");
 
         for (Integer i = 0; i < 3; i++) {
-            System.out.printf("%-30s %s\n", restDescription.get(i).getText(), restRating.get(i).getText());
-            Allure.addAttachment("The rating of "+ restDescription.get(i).getText(), restRating.get(i).getText());
+            System.out.printf("%-30s %s\n", listDescription.get(i).getText(), listRestaurantRating.get(i).getText());
+            Allure.addAttachment("The rating of "+ listDescription.get(i).getText(), listRestaurantRating.get(i).getText());
         }
     }
 
